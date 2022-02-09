@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProductsComponent } from './products/products.component';
+import { ProductsComponent } from './components/products/products.component';
 import { ProductListItemComponent } from './components/product-list-item/product-list-item.component';
 import { ProductCartItemComponent } from './components/product-cart-item/product-cart-item.component';
 import { CartComponent } from './components/cart/cart.component';
@@ -26,7 +27,8 @@ import { OrderConfirmComponent } from './components/order-confirm/order-confirm.
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
