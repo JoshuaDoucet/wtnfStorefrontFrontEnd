@@ -1,9 +1,11 @@
 <div class="product-item">
-    <div class="product-sub-item" *ngIf="product.image_ids">
-        <img *ngIf="product.image_ids[0]" class="product-sub-item" width="200" src="{{ apiHost }}/imagefile/{{ product.image_ids[0] }}">
+    <div (click)="viewDetails()">
+        <div class="product-sub-item" *ngIf="product.image_ids">
+            <img *ngIf="product.image_ids[0]" class="product-sub-item" width="200" src="{{ apiHost }}/imagefile/{{ product.image_ids[0] }}">
+        </div>
+        <p class="product-sub-item">{{ product.name }}</p>
+        <br>
     </div>
-    <p class="product-sub-item" >{{ product.name }}</p>
-    <br>
     <div *ngIf="product.boh">
         <div class="product-sub-item">
             <label for="quantity">Qty: </label>
