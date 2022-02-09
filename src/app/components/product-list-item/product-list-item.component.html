@@ -1,1 +1,15 @@
-<p>product-list-item works!</p>
+<div class="product-item">
+    <div class="product-sub-item" *ngIf="product.image_ids">
+        <img *ngIf="product.image_ids[0]" class="product-sub-item" width="200" src="{{ apiHost }}/imagefile/{{ product.image_ids[0] }}">
+    </div>
+    <p class="product-sub-item" >{{ product.name }}</p>
+    <br>
+    <div *ngIf="product.boh">
+        <div class="product-sub-item">
+            <label for="quantity">Qty: </label>
+            <input type="number" id="quantity" name="quantity" min="1" max="{{ product.boh }}">
+        </div>
+        <br>
+        <button class="product-sub-item">Add to Cart</button>
+    </div>
+</div>

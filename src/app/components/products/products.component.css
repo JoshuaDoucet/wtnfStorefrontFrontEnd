@@ -1,0 +1,14 @@
+.products-container {
+    display: block;
+    margin: auto;
+    text-align: center;
+}
+
+.products-list-container {
+    display: grid;
+    grid-template-columns: 350px 350px;
+    margin: auto;
+    text-align: center;
+    background-color: rgb(107, 230, 189);
+    width: 60%;
+}

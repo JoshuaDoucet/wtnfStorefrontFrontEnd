@@ -1,0 +1,12 @@
+.product-item {
+    padding: 20px 20px 20px 20px;
+    margin: 20px 20px 20px 20px;
+    width: 300px;
+    background-color: #86B6C5;
+}
+
+.product-sub-item {
+    display: block;
+    margin: auto;
+    text-align: center;
+}

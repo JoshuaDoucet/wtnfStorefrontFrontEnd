@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/product'
 import { ProductsService } from 'src/app/services/products/products.service';
+import { ConfigurationService } from 'src/app/services/configuration/configuration.service';
 
 
 @Component({
@@ -10,11 +11,13 @@ import { ProductsService } from 'src/app/services/products/products.service';
 })
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
+  apiHost: string = "";
 
-
-  constructor(private productService: ProductsService) { }
+  constructor(private productService: ProductsService, 
+              private config: ConfigurationService) { }
 
   ngOnInit(): void {
+    this.apiHost = this.config.getApiHost();
     this.productService.getProducts().subscribe(res => {
       this.products = res;
     });

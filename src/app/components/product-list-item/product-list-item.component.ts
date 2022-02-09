@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ConfigurationService } from 'src/app/services/configuration/configuration.service';
+import { Product } from 'src/app/models/product';
 
 @Component({
   selector: 'app-product-list-item',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./product-list-item.component.css']
 })
 export class ProductListItemComponent implements OnInit {
+  @Input() product: Product = new Product();
+  apiHost: string = "";
 
-  constructor() { }
+  constructor(private config: ConfigurationService) { }
 
   ngOnInit(): void {
+    this.apiHost = this.config.getApiHost();
   }
 
 }
