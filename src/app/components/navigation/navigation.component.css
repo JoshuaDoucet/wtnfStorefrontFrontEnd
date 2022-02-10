@@ -1,0 +1,25 @@
+.navigator {
+    background-color: #9E8F8C;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.column {
+    float: left;
+    width: 33.33%;
+    margin: 0 auto;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}

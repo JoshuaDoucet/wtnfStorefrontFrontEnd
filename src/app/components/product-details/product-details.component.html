@@ -1,2 +1,63 @@
-<p>Item Details</p>
-<p>Product ID: {{product_id}}</p>
+<app-navigation></app-navigation>
+<div class="details-container">
+<span class="error" *ngIf="!product.id">Product with UID {{product_id}} not found.</span>
+<div class="row" *ngIf="product.id">
+    <div class="column">
+        <br>
+        <div *ngFor="let image_path of image_paths">
+            <img src="{{ image_path }}" height="400">
+            <br>
+        </div>
+    </div>
+    <div class="column">
+        <h2>{{product.name}}</h2>
+        <h2>${{product.price}}</h2>
+        <h3 *ngIf="product.for_sale" style="color: green;">FOR SALE</h3>
+        <h3 *ngIf="!product.for_sale" style="color: red;">NOT FOR SALE</h3>
+        <div *ngIf="product.boh != null && product.boh">
+        <span>Available: {{product.boh}}</span>
+        <form>
+            <div>
+                <label for="quantity">Qty: </label>
+                <input type="number" id="quantity" name="quantity" value="1" min="1" max="{{ product.boh }}">
+                <button>Add to Cart</button>
+            </div>
+        </form>
+        </div>
+
+        <p *ngIf="product.description != null" width="400">Description: {{product.description}}</p>
+        
+        <ul>
+            <li *ngIf="product.cost != null">Cost: ${{product.cost}}</li>
+            <li *ngIf="product.brand != null">Brand: {{product.brand}}</li>
+            <li *ngIf="product.category != null">Categories: {{product.category}}</li>
+            <li *ngIf="product.measurments != null">Measurments: {{product.measurments}}</li>
+            <li *ngIf="product.size_family != null">Family of Sizes: {{product.size_family}}</li>
+            <li *ngIf="product.size != null">Size: {{product.size}}</li>
+            <li *ngIf="product.weight_grams != null">Weight (g): {{product.weight_grams}}</li>
+            <li *ngIf="product.condition != null">Condition: {{product.condition}}</li>
+            <li *ngIf="product.instructions != null">Instructions: {{product.instructions}}</li>
+            <li *ngIf="product.country_origin != null">Country of Origin: {{product.country_origin}}</li>
+            <li *ngIf="product.color_ids != null && product.color_ids.length > 0">Colors: 
+                <ul>
+                    <div *ngFor="let color of color_names">
+                        <li>{{ color }}</li>
+                    </div>
+                </ul>
+            </li>
+            <li *ngIf="product.material_ids != null && product.material_ids.length > 0">Materials: 
+                <ul>
+                    <div *ngFor="let material of material_names">
+                        <li>{{ material }}</li>
+                    </div>
+                </ul>
+            </li>
+            <li *ngIf="product.owner != null">Current Owner: {{product.owner}}</li>
+            <li *ngIf="product.sku != null">SKU: {{product.sku}}</li>
+            <li *ngIf="product.rn_num != null">RN#: {{product.rn_num}}</li>
+            <li>Item's Unique ID: {{product_id}}</li>
+        </ul>
+    </div>
+</div>
+</div>
+

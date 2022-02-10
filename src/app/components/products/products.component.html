@@ -1,6 +1,9 @@
+<app-navigation></app-navigation>
 <div class="products-container">
-    <h2>Products</h2>
+    <span class="page-title">Products</span>
     <div class="products-list-container">
-    <app-product-list-item *ngFor="let product of products" [product]="product"></app-product-list-item>
+        <div *ngFor="let product of products">
+            <app-product-list-item *ngIf="product.for_sale" [product]="product"></app-product-list-item>
+        </div>
     </div>
 </div>

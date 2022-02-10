@@ -1,0 +1,18 @@
+.details-container {
+  background-color: #FDFAF6;
+  width: 85%;
+  margin: auto;
+}
+
+.error{
+  color: red;
+}
+
+.row {
+  display: flex;
+}
+  
+.column {
+  padding: 20px;
+  width: fit-content;
+}
