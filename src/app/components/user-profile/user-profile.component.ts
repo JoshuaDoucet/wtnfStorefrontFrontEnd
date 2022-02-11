@@ -19,12 +19,14 @@ export class UserProfileComponent implements OnInit {
     this.getUser();
   }
 
-
- // fetch user info from API
+  // fetch user info from API
   getUser(): void {
     if(this.userId != null){
       this.userProfileService.getUser(this.userId).subscribe({
-        error: (err) => {console.log('ERROR' + err)},
+        error: (err) => {
+          console.log('ERROR - Could not retrive user.');
+          this.userId = null;
+        },
         next: (user) => {
           this.user = user;
         }

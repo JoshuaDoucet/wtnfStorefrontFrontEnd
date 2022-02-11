@@ -26,6 +26,7 @@ export class Product {
     image_ids?: string[]; // imageID array
 
     constructor(){
+        this.id = "-1"
         this.name = "";
         this.price = -1;
         this.for_sale = false;

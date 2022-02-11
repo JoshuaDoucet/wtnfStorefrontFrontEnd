@@ -2,7 +2,9 @@
 <div class="products-container">
     <span class="page-title">Products</span>
     <div class="products-list-container">
+        <!--Create a ProductListItem component template for each Product for sale-->
         <div *ngFor="let product of products">
+            <!--Bind each product to product property in ProductListItemComponent-->
             <app-product-list-item *ngIf="product.for_sale" [product]="product"></app-product-list-item>
         </div>
     </div>

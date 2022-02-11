@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/product'
 import { ProductsService } from 'src/app/services/products/products.service';
-import { ConfigurationService } from 'src/app/services/configuration/configuration.service';
 
 
 @Component({
@@ -10,14 +9,13 @@ import { ConfigurationService } from 'src/app/services/configuration/configurati
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
+  // list of all products for sale
   products: Product[] = [];
-  apiHost: string = "";
 
-  constructor(private productService: ProductsService, 
-              private config: ConfigurationService) { }
+  constructor(private productService: ProductsService) { }
 
   ngOnInit(): void {
-    this.apiHost = this.config.getApiHost();
+    // Get all products from service
     this.productService.getProducts().subscribe(res => {
       this.products = res;
     });

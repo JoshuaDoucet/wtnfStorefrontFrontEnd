@@ -1,8 +1,16 @@
 <div class="navigator">
-    <span><br><br><a routerLink="/"><button>Products</button></a></span>
-    <img src="assets/images/wtnf_logo.png" height="100px">
-    <span>
-        <br><br><a routerLink="/signin"><button>Sign-In</button></a>
-        <br><a routerLink="/profile"><button>Account Profile</button></a>
+    <span *ngIf="navigateOn" class="nav-item"><br><a routerLink="/"><button>Products</button></a></span>
+    <div class="nav-item" ><a routerLink="/"><img src="assets/images/wtnf_logo.png" height="100px"></a></div>
+    <span *ngIf="navigateOn" class="nav-item">
+        <div class="col-3">
+            <span>
+                <br><a *ngIf="userId == null" routerLink="/signin"><button>Sign-In</button></a>
+                <button *ngIf="userId != null" (click)="signOut()" >Sign-Out</button>
+                <br><a *ngIf="userId != null" routerLink="/profile"><button>Account Profile</button></a>
+                <br><a *ngIf="userId != null" routerLink="/cart"><button>Cart</button></a>
+            </span>
+            <br><br>
+            <p *ngIf="userFirstName != null">Hi {{userFirstName}}!</p>
+        </div>
     </span>
 </div>

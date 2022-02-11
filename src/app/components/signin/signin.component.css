@@ -1,0 +1,12 @@
+.error{
+    color: red;
+}
+
+.sign-in-container {
+    background-color: #FDFAF6;
+    width: 65%;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    margin: auto;
+    text-align: center;
+  }

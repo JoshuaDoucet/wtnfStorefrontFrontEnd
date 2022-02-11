@@ -42,4 +42,5 @@ export class UserProfileService {
     return this.http.get<User>(this.config.getApiHost() + `/users/${userId}`);
   }
 
+  
 }

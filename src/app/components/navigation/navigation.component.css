@@ -7,12 +7,16 @@
     margin-top: 20px;
 }
 
-.column {
-    float: left;
-    width: 33.33%;
-    margin: 0 auto;
-    text-transform: uppercase;
-    font-weight: bold;
+.nav-item {
+    width: 33%;
+}
+
+.col-3 {
+    display: flex;
+    padding-left: 10px;
+    flex-direction: row;
+    justify-content: space-evenly;
+    text-align: center;
 }
 
 

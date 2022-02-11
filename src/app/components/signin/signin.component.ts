@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticateService } from 'src/app/services/authenticate/authenticate.service';
+import { UserProfileService } from 'src/app/services/user-profile/user-profile.service';
 
 @Component({
   selector: 'app-signin',
@@ -10,19 +11,40 @@ import { AuthenticateService } from 'src/app/services/authenticate/authenticate.
 export class SigninComponent implements OnInit {
   email: string = "";
   password: string = "";
+  errMsg: string = "";
+  // used to disable buttons on navigator
+  navigateOn: boolean = false;
 
   constructor(private authenticateService: AuthenticateService,
-    private router: Router) { }
+    private router: Router,
+    private userProfileService: UserProfileService) { }
 
   ngOnInit(): void {
+    this.errMsg = "";
   }
 
   signIn(){
     this.authenticateService.authenticate(this.email, this.password)
       .subscribe(res => {
-        console.log(res);
+        // add JWT to local storage
         localStorage.setItem('token', res);
-        this.router.navigate(['/products']);
+        const userId = this.userProfileService.getUserIdFromToken();
+        if(userId == null){
+          // if sign in unsucessful remain on page. update error message
+          this.errMsg = "Invalid sign-in credentials."
+          localStorage.removeItem('userId');
+          localStorage.removeItem('userFirstName');
+        }else{
+          //  if sign in successful
+          // add user id to local storage
+          localStorage.setItem('userId', userId);
+          // add user to userFirstName in local storage
+          this.userProfileService.getUser(userId).subscribe(user => {
+            localStorage.setItem('userFirstName', user.first_name);
+            // return user to products page
+            this.router.navigate(['/products']);
+          });
+        }
       });
   }
 
