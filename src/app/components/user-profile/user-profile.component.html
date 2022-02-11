@@ -1,0 +1,12 @@
+<h2>Account Profile</h2>
+<span *ngIf="userId != null">
+    <p>User ID: {{userId}}</p>
+    <p *ngIf="user.first_name != null">First name: {{user.first_name}}</p>
+    <p *ngIf="user.last_name != null">Last name: {{user.last_name}}</p>
+    <p *ngIf="user.phone != null">Phone: {{user.phone}}</p>
+    <p *ngIf="user.email != null">Email: {{user.email}}</p>
+</span>
+<p *ngIf="userId == null"><a routerLink="/signin">Sign-in to view profile</a>
+
+
+

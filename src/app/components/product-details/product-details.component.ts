@@ -34,9 +34,8 @@ export class ProductDetailsComponent implements OnInit {
 
   getProductResource(product_id: string){
     this.productDetailsService.getProduct(this.product_id).subscribe({
-      error: (err) => {this.product.id = undefined; console.log("ERROR")},
+      error: (err) => {this.product.id = undefined; console.log("ERROR:" + err)},
       next: (product) => {
-        console.log(product)
         this.product = product;
         if(this.product.image_ids){
           this.image_paths = this.productDetailsService.getProductImageUrls(this.product.image_ids);
