@@ -1,1 +1,5 @@
-<p>cart-products works!</p>
+<h2>Cart</h2>
+<div *ngFor="let item of cartItems">
+    Item: {{item.name}}<br>
+    Qty: {{item.product_quantity}}
+</div>

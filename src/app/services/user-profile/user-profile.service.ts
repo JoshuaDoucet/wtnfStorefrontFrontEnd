@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { JwtHelperService } from "@auth0/angular-jwt";
 import { ConfigurationService } from '../configuration/configuration.service';
 import { User } from 'src/app/models/user';
+import { Order } from 'src/app/models/order';
 
 @Injectable({
   providedIn: 'root'
@@ -42,5 +43,8 @@ export class UserProfileService {
     return this.http.get<User>(this.config.getApiHost() + `/users/${userId}`);
   }
 
+  getUserOrders(userId: string): Observable<Order[]>{
+    return this.http.get<Order[]>(this.config.getApiHost() + `/users/${userId}/orders`);
+  }
   
 }
