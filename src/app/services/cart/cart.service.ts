@@ -16,21 +16,20 @@ export class CartService {
     private userProfileService: UserProfileService) {
       // get active order ID
       const userId = localStorage.getItem('userId');
-      if(userId == null){
-        throw new Error("Cannot initialize CartService with a null userId")
-      }
-      this.userProfileService.getUserOrders(userId).subscribe({
-        error: (err) => {
-          throw new Error("Cannot get user orders. " + err)
-        },
-        next: (orders) => {
-          for(let i = 0; i < orders.length; i++){
-            if(orders[i].status == "active"){
-              this.activeOrderId = orders[i].id;
+      if(userId != null){
+        this.userProfileService.getUserOrders(userId).subscribe({
+          error: (err) => {
+            throw new Error("Cannot get user orders. " + err)
+          },
+          next: (orders) => {
+            for(let i = 0; i < orders.length; i++){
+              if(orders[i].status == "active"){
+                this.activeOrderId = orders[i].id;
+              }
             }
           }
-        }
-      });
+        });
+      }
     }
 
   getCart(): Observable<CartItem[]>{
