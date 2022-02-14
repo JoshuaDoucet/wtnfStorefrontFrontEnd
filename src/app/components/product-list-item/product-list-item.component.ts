@@ -46,7 +46,7 @@ export class ProductListItemComponent implements OnInit {
           // check if product being added is already in cart
           for(let i = 0; i < cartItems.length; i++){
             // if product already in cart, set flag and break loop
-            if(this.product.id && cartItems[i].prod_id +"" == this.product.id){
+            if(this.product.id && cartItems[i].product_id +"" == this.product.id){
               isProdInCart = true;
               prodIndex = i;
               break;

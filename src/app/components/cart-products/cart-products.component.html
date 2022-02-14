@@ -1,5 +1,3 @@
 <h2>Cart</h2>
-<div *ngFor="let item of cartItems">
-    Item: {{item.name}}<br>
-    Qty: {{item.product_quantity}}
-</div>
+<app-product-cart-item *ngFor="let cartItem of cartItems" [cartItem]="cartItem" (removeProductEmit)="removeProduct($event)"></app-product-cart-item>
+<h3>Subtotal: ${{totalPrice}}</h3>

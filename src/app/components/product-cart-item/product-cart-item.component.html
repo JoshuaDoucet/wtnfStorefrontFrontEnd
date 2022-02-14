@@ -1,1 +1,12 @@
-<p>product-cart-item works!</p>
+<div>
+
+    <form (ngSubmit)="removeProduct()">
+        Item UID# {{cartItem.product_id}}<br>
+        Name: <a routerLink="/products/{{cartItem.product_id}}">{{cartItem.name}}</a><br>
+        Price: ${{cartItem.price}}<br>
+        Qty: {{cartItem.product_quantity}}<br>
+        Item Subtotal: ${{cartItem.product_quantity * cartItem.price}}<br>
+        <button type="submit" value="Remove">Remove from cart</button>
+    </form>
+</div>
+<br>

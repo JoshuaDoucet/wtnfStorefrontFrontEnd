@@ -6,7 +6,8 @@
         <p class="product-sub-item">{{ product.name }}</p>
         <br>
     </div>
-    <div *ngIf="product.boh">
+    <div *ngIf="product.boh && product.price">
+        <span>${{product.price}}</span><br><br>
         <form (ngSubmit)="addToCart()">
         <div class="product-sub-item">
             <label for="quantity">Qty: </label>

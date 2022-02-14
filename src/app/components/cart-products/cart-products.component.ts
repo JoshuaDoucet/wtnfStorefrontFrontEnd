@@ -11,6 +11,7 @@ import { CartService } from 'src/app/services/cart/cart.service';
 export class CartProductsComponent implements OnInit {
   //products in the cart for the logged in user
   cartItems: CartItem[] = [];
+  totalPrice: number = 0;
 
   constructor(private cartService: CartService) { }
 
@@ -21,6 +22,26 @@ export class CartProductsComponent implements OnInit {
   getProductsInUsersCart(): void{
     this.cartService.getCart().subscribe(cartItems => {
       this.cartItems = cartItems;
+      this.updateCartPrice();
     })
+  }
+
+  removeProduct(cartItem: CartItem): void {
+    this.cartItems = this.cartItems.filter(item => 
+      item.product_id + "" !== cartItem.product_id + ""
+    );
+    this.updateCartPrice();
+    alert(`Product with ID# ${cartItem.product_id} removed from cart.`);
+  }
+
+  updateCartPrice(){
+    for(let i = 0; i < this.cartItems.length; i++){
+      if(this.cartItems[i] && this.cartItems[i].price && this.cartItems[i].product_quantity){
+        this.totalPrice += this.cartItems[i].price * this.cartItems[i].product_quantity;
+      }else{
+        this.totalPrice = 0;
+        throw new Error("Cannot calculate price of cart")
+      }
+    }
   }
 }

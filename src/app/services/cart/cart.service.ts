@@ -15,22 +15,26 @@ export class CartService {
     private config: ConfigurationService,
     private userProfileService: UserProfileService) {
       // get active order ID
-      const userId = localStorage.getItem('userId');
-      if(userId != null){
-        this.userProfileService.getUserOrders(userId).subscribe({
-          error: (err) => {
-            throw new Error("Cannot get user orders. " + err)
-          },
-          next: (orders) => {
-            for(let i = 0; i < orders.length; i++){
-              if(orders[i].status == "active"){
-                this.activeOrderId = orders[i].id;
-              }
+      this.getActiveOrderId();
+    }
+
+  private getActiveOrderId(): void {
+    const userId = localStorage.getItem('userId');
+    if(userId != null){
+      this.userProfileService.getUserOrders(userId).subscribe({
+        error: (err) => {
+          throw new Error("Cannot get user orders. " + err)
+        },
+        next: (orders) => {
+          for(let i = 0; i < orders.length; i++){
+            if(orders[i].status == "active"){
+              this.activeOrderId = orders[i].id;
             }
           }
-        });
-      }
+        }
+      });
     }
+  }
 
   getCart(): Observable<CartItem[]>{
     return this.http.get<CartItem[]>(this.config.getApiHost() + '/cart');
@@ -46,7 +50,19 @@ export class CartService {
           }
       )
       }else{
-      throw new Error("Cannot add product without an active order id.");
+        this.getActiveOrderId();
+        throw new Error("Cannot add product without an active order id.");
+    }
+  }
+
+  removeProductFromCart(productId: string):Observable<CartItem>{
+    if(this.activeOrderId){
+        return this.http.delete<CartItem>(
+          this.config.getApiHost() + `/orders/${this.activeOrderId}/products/${productId}`
+      )
+    }else{
+      this.getActiveOrderId();
+      throw new Error("Cannot delete product without an active order id.");
     }
   }
 
@@ -59,7 +75,8 @@ export class CartService {
           }
       )
       }else{
-      throw new Error("Cannot add product without an active order id.");
+        this.getActiveOrderId();
+        throw new Error("Cannot add product without an active order id.");
     }
   }
   //
