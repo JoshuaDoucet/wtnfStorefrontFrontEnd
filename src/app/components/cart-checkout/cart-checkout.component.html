@@ -1,1 +1,36 @@
-<p>cart-checkout works!</p>
+<form (ngSubmit)="placeOrder()">
+    <h2>Checkout</h2>
+    <h4>Your Information</h4>
+    <label for="firstName">First Name: </label>
+    <input type="text" name="firstName" placeholder="Jane" [(ngModel)]="firstName"><br>
+
+    <label for="lastName">Last Name: </label>
+    <input type="text" name="lastName" placeholder="Doe" [(ngModel)]="lastName"><br>
+
+    <label for="phone">Phone #: </label>
+    <input type="text" name="phone" placeholder="8885550000" [(ngModel)]="phone"><br>
+
+    <label for="email">Email: </label>
+    <input type="email" name="email" placeholder="your@email.com" [(ngModel)]="email"><br>
+
+    <label for="addr1">Street Address: </label>
+    <input type="text" name="addr1" placeholder="123 Sample St." [(ngModel)]="addr1"><br>
+
+    <label for="addr2">Address Line 2: </label>
+    <input type="text" name="addr2" placeholder="Apt 203" [(ngModel)]="addr2"><br>
+
+    <label for="city">City: </label>
+    <input type="text" name="city" placeholder="Roundtown" [(ngModel)]="city"><br>
+
+    <label for="lastName">State: </label>
+    <input type="text" name="state" placeholder="Idaho" [(ngModel)]="state"><br>
+
+    <label for="zip">ZIP Code: </label>
+    <input type="number" name="zip" placeholder="65433" [(ngModel)]="zip"><br>
+
+    <label for="country">Country: </label>
+    <input type="text" name="country" placeholder="United States" [(ngModel)]="country"><br><br>
+
+
+    <button type="submit">Place Order</button>
+</form>
