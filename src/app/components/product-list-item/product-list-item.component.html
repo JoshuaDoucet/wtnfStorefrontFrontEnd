@@ -11,7 +11,7 @@
         <form (ngSubmit)="addToCart()">
         <div class="product-sub-item">
             <label for="quantity">Qty: </label>
-            <input [(ngModel)]="quantity" type="number" id="quantity" name="quantity" min="1" max="{{ product.boh }}">
+            <input [(ngModel)]="quantity" type="number" id="quantity" name="quantity" step="1" min="1" pattern="\d+" max="{{ product.boh }}">
         </div>
         <br>
         <button class="product-sub-item">Add to Cart</button>

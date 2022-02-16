@@ -20,7 +20,7 @@
         <form (ngSubmit)="addToCart()">
             <div>
                 <label for="quantity">Qty: </label>
-                <input type="number" id="quantity" name="quantity" value="1" min="1" max="{{ product.boh }}">
+                <input type="number" id="quantity" name="quantity" value="1" step="1" pattern="\d+" min="1" max="{{ product.boh }}">
                 <button type="submit" style="border-radius: 15px;">Add to Cart</button>
             </div>
         </form>

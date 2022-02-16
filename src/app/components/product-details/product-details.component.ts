@@ -116,50 +116,56 @@ export class ProductDetailsComponent implements OnInit {
   
   addToCart(){
     if(this.product.id && localStorage.getItem('userId')){
-      // get items already in cart
-      this.cartService.getCart().subscribe({
-        error: (err) => {alert("Sign-In to add items to cart. ");},
-        next: (cartItems) => {
-          let isProdInCart = false;
-          let prodIndex = -1;
-          // check if product being added is already in cart
-          for(let i = 0; i < cartItems.length; i++){
-            // if product already in cart, set flag and break loop
-            if(this.product.id && cartItems[i].product_id +"" == this.product.id){
-              isProdInCart = true;
-              prodIndex = i;
-              break;
+      if(this.quantity < 1){
+        alert("Quantity must be greater than 0")
+      } else if(this.quantity !== Math.floor(this.quantity)){
+        alert("Quantity must be a whole number.")
+      }else{
+        // get items already in cart
+        this.cartService.getCart().subscribe({
+          error: (err) => {alert("Sign-In to add items to cart. ");},
+          next: (cartItems) => {
+            let isProdInCart = false;
+            let prodIndex = -1;
+            // check if product being added is already in cart
+            for(let i = 0; i < cartItems.length; i++){
+              // if product already in cart, set flag and break loop
+              if(this.product.id && cartItems[i].product_id +"" == this.product.id){
+                isProdInCart = true;
+                prodIndex = i;
+                break;
+              }
+            }
+            //update product quantity in cart
+            if(isProdInCart){
+              //if added quantity is less than balance on hand boh update quantity
+              if(this.product.boh && this.product.id
+                && cartItems[prodIndex].product_quantity + this.quantity <= this.product.boh){
+                // update product quantity in cart
+                this.cartService.updateProductQuantityInCart(this.product.id, this.quantity)
+                .subscribe({
+                  error: (err) => {alert("Product quantity NOT updated in cart.")},
+                  next: (cartItem) => {alert("Product quantity updated in cart.");}
+                });
+              }else{
+                alert("Quantity exceed quantity available.")
+              }
+            }
+            // else product not in cart, add to cart
+            else{
+              if(this.product.id){
+                this.cartService.addProductToCart(this.product.id, this.quantity)
+                .subscribe({
+                  error: (err) => {alert("Product NOT added to cart.")},
+                  next: (cartItem) => {alert("Product added to cart.");}
+                });
+              }else{
+                alert("Product Id not found. Cannot add to cart.")
+              }
             }
           }
-          //update product quantity in cart
-          if(isProdInCart){
-            //if added quantity is less than balance on hand boh update quantity
-            if(this.product.boh && this.product.id
-              && cartItems[prodIndex].product_quantity + this.quantity <= this.product.boh){
-              // update product quantity in cart
-              this.cartService.updateProductQuantityInCart(this.product.id, this.quantity)
-              .subscribe({
-                error: (err) => {alert("Product quantity NOT updated in cart.")},
-                next: (cartItem) => {alert("Product quantity updated in cart.");}
-              });
-            }else{
-              alert("Quantity exceed quantity available.")
-            }
-          }
-          // else product not in cart, add to cart
-          else{
-            if(this.product.id){
-              this.cartService.addProductToCart(this.product.id, this.quantity)
-              .subscribe({
-                error: (err) => {alert("Product NOT added to cart.")},
-                next: (cartItem) => {alert("Product added to cart.");}
-              });
-            }else{
-              alert("Product Id not found. Cannot add to cart.")
-            }
-          }
-        }
-      });
+        });
+      }
     }else{
       alert("Sign-in to add to cart.")
     }

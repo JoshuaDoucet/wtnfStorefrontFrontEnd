@@ -4,7 +4,7 @@
     Price: ${{cartItem.price}}<br>
     <form>
         <label for="quantity">Qty: </label>
-        <input [(ngModel)]="quantity" (change)="onChangeEvent($event)" name="quantity" type="number" id="quantity" min="1"  max="{{cartItem.boh}}" value="{{quantity}}"><br>
+        <input [(ngModel)]="quantity" (change)="onChangeEvent($event)" name="quantity" type="number" id="quantity" min="1"  step="1" pattern="\d+" max="{{cartItem.boh}}" value="{{quantity}}"><br>
         Item Subtotal: ${{subTotal}}<br>
     </form>
 
