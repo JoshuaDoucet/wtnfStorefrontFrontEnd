@@ -1,12 +1,14 @@
 <div>
+    Item UID# {{cartItem.product_id}}<br>
+    Name: <a routerLink="/products/{{cartItem.product_id}}">{{cartItem.name}}</a><br>
+    Price: ${{cartItem.price}}<br>
+    <form>
+        <label for="quantity">Qty: </label>
+        <input [(ngModel)]="quantity" (change)="onChangeEvent($event)" name="quantity" type="number" id="quantity" min="1"  max="{{cartItem.boh}}" value="{{quantity}}"><br>
+        Item Subtotal: ${{subTotal}}<br>
+    </form>
 
     <form (ngSubmit)="removeProduct()">
-        Item UID# {{cartItem.product_id}}<br>
-        Name: <a routerLink="/products/{{cartItem.product_id}}">{{cartItem.name}}</a><br>
-        Price: ${{cartItem.price}}<br>
-        Qty: {{cartItem.product_quantity}}<br>
-        Item Subtotal: ${{cartItem.product_quantity * cartItem.price}}<br>
         <button type="submit" value="Remove">Remove from cart</button>
     </form>
 </div>
-<br>

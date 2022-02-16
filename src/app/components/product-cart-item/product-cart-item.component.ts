@@ -11,14 +11,51 @@ import { CartService } from 'src/app/services/cart/cart.service';
 export class ProductCartItemComponent implements OnInit {
   @Input() cartItem: CartItem = new CartItem();
   @Output() removeProductEmit: EventEmitter<CartItem> = new EventEmitter();
+  @Output() updateProductEmit: EventEmitter<CartItem> = new EventEmitter();
+  quantity: number = 0;
+  subTotal: number = 0;
 
   constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
+    this.quantity = this.cartItem.product_quantity;
+    this.subTotal = this.cartItem.product_quantity * this.cartItem.price;
+  }
+
+  onChangeEvent(event: any){
+    if(event.target.value < 1){
+      alert("Quantity must be greater than 0.");
+      this.quantity = this.cartItem.product_quantity;
+    }
+    else if(event.target.value <= this.cartItem.boh){
+      this.cartItem.product_quantity = event.target.value;
+      this.quantity = this.cartItem.product_quantity;
+      this.subTotal = this.cartItem.product_quantity * this.cartItem.price;
+      this.updateProdQuantity();
+    }else{
+      alert("Quantity exceed quantity available.");
+      this.quantity = this.cartItem.product_quantity;
+    }
+
+  }
+
+  updateProdQuantity(): void {
+    if(this.cartItem.product_id){
+      this.cartService.updateProductQuantityInCart(this.cartItem.product_id + "", 
+        this.cartItem.product_quantity).subscribe({
+        error: (err) => {
+          alert(`Product quantity not updated in cart. ` + err)
+        },
+        next: (cartItem) => { 
+          this.updateProductEmit.emit(cartItem);
+        }
+      });
+    }else{
+      alert("Cannot find product ID. Item quantity not updated in cart.")
+    }
   }
 
   removeProduct(): void {
-    console.log(this.cartItem)
     if(this.cartItem.product_id){
       this.cartService.removeProductFromCart(this.cartItem.product_id + "").subscribe({
         error: (err) => {

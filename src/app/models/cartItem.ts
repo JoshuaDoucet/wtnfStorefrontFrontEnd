@@ -3,6 +3,7 @@ export class CartItem {
     product_id: number; // product ID
     name: string; // Product name
     product_quantity: number;
+    boh: number; // balance on hand of product
     price: number;
     user_id: string;
     ord_id: number;
@@ -13,6 +14,7 @@ export class CartItem {
         this.product_id = -1;
         this.name = "";
         this.price = 0;
+        this.boh = 0;
         this.product_quantity = 0;
         this.user_id = "-1";
         this.ord_id = -1;

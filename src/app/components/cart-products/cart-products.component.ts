@@ -34,13 +34,21 @@ export class CartProductsComponent implements OnInit {
     alert(`Product with ID# ${cartItem.product_id} removed from cart.`);
   }
 
+  updateProdQuantity(cartItem: CartItem): void {
+    for(let i = 0; i < this.cartItems.length; i++){
+      if(this.cartItems[i].product_id + "" == cartItem.product_id + ""){
+        this.cartItems[i].product_quantity = cartItem.product_quantity;
+      }
+    }
+    this.updateCartPrice();
+    alert(`Quantity for product with ID# ${cartItem.product_id} updated in cart.`);
+  }
+
   updateCartPrice(){
+    this.totalPrice = 0;
     for(let i = 0; i < this.cartItems.length; i++){
       if(this.cartItems[i] && this.cartItems[i].price && this.cartItems[i].product_quantity){
         this.totalPrice += this.cartItems[i].price * this.cartItems[i].product_quantity;
-      }else{
-        this.totalPrice = 0;
-        throw new Error("Cannot calculate price of cart")
       }
     }
   }
