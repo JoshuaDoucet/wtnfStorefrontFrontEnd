@@ -1,6 +1,6 @@
 <div>
     Item UID# {{cartItem.product_id}}<br>
-    Name: <a routerLink="/products/{{cartItem.product_id}}">{{cartItem.name}}</a><br>
+    <a routerLink="/products/{{cartItem.product_id}}">{{cartItem.name}}</a><br>
     Price: ${{cartItem.price}}<br>
     <form>
         <label for="quantity">Qty: </label>
@@ -9,6 +9,6 @@
     </form>
 
     <form (ngSubmit)="removeProduct()">
-        <button type="submit" value="Remove">Remove from cart</button>
+        <button type="submit" value="Remove">Remove from cart</button><br><br>
     </form>
 </div>

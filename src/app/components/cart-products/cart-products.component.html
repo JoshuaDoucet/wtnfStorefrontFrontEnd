@@ -1,5 +1,6 @@
-<h2>Cart</h2>
 <div class="cart-products-container">
+    <h2>Cart</h2>
+    <h4>Items in Cart</h4>
     <app-product-cart-item *ngFor="let cartItem of cartItems" [cartItem]="cartItem" (removeProductEmit)="removeProduct($event)" (updateProductEmit)="updateProdQuantity($event)"></app-product-cart-item>
-    <h3>Subtotal: ${{totalPrice}}</h3>
+    <h3>Subtotal: <br>${{totalPrice}}</h3>
 </div>

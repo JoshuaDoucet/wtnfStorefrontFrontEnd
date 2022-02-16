@@ -6,16 +6,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cart-checkout.component.css']
 })
 export class CartCheckoutComponent implements OnInit {
-  firstName: string = 'First Name';
-  lastName: string = 'Last Name';
-  phone: number = 8885550000;
-  email: string = 'your@email.com';
-  addr1: string = 'Line 1 Address';
-  addr2: string = 'Line 2 Address';
-  city: string = 'City';
-  state: string = 'State';
-  zip: number = -1;
-  country: string = 'Country';
+  firstName: string = '';
+  lastName: string = '';
+  phone: number | undefined;
+  email: string = '';
+  addr1: string = '';
+  addr2: string = '';
+  city: string = '';
+  state: string = '';
+  zip: number | undefined;
+  country: string = '';
 
   constructor() { }
 
