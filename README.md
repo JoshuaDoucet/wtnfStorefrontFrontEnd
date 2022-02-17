@@ -27,3 +27,7 @@
 - "/profile" The profile page displays information about the logged in user
 - "/cart" The cart page displays all the products in the cart for the logged in user. This page also contains a checkout form to place an order
 - "/cart/confirm" The cart confirm page shows a message that an order was sucessfully placed
+
+### The application backend
+- More information on the application's backend can be found in the following repo
+- https://github.com/JoshuaDoucet/wtnfStorefrontAPI.git
