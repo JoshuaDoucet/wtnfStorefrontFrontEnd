@@ -1,3 +1,5 @@
+// Products Components/ Displays a list of all available products for sale
+
 import { Component, OnInit } from '@angular/core';
 import { Product } from '../../models/product'
 import { ProductsService } from 'src/app/services/products/products.service';

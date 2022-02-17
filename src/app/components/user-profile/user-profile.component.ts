@@ -1,3 +1,6 @@
+// User Profile Component
+// Displays information about the logged in user
+
 import { Component, OnInit } from '@angular/core';
 import { UserProfileService } from 'src/app/services/user-profile/user-profile.service';
 import { User } from 'src/app/models/user';

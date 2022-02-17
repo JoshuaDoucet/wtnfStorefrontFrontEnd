@@ -1,3 +1,6 @@
+// Sign In Component
+// Allows a user to log in to the website
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticateService } from 'src/app/services/authenticate/authenticate.service';

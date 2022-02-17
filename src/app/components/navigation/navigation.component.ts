@@ -1,3 +1,7 @@
+// Navigation component
+// Appears at the top of every route in the storefront application
+// allows users to easily navigate between site routes
+
 import { Component, Input, OnInit } from '@angular/core';
 import { AuthenticateService } from 'src/app/services/authenticate/authenticate.service';
 

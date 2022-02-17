@@ -1,3 +1,6 @@
+// Product details component
+// Displays detailed information about a single product with the ability to add product to the cart
+
 import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from "@angular/router";
 

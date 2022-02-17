@@ -1,3 +1,7 @@
+// Products list item Component
+//Displays a few details about a single product within the products list
+// with the ability to add the product to the cart
+
 import { Component, Input, OnInit } from '@angular/core';
 import { ConfigurationService } from 'src/app/services/configuration/configuration.service';
 import { CartService } from 'src/app/services/cart/cart.service';

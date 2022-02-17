@@ -1,3 +1,6 @@
+// Cart checkout component
+// Displays a checkout form to a user where they can place an order for the items in their cart
+
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 import { User } from 'src/app/models/user';
@@ -57,7 +60,6 @@ export class CartCheckoutComponent implements OnInit {
         },
         next: (order) => {
           // order is no longer active, create an active order
-          console.log(order)
           this.orderService.createOrder(userId).subscribe({
             error: (err) => {},
             next: (order) => {

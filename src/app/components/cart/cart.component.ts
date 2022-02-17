@@ -1,3 +1,6 @@
+// Cart Component
+// A container component to hold the cart products and the cart checkout form
+
 import { Component, OnInit } from '@angular/core';
 
 @Component({

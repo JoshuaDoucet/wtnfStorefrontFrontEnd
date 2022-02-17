@@ -1,0 +1,8 @@
+Future application improvments
+- Sign Up / Create user component
+- Add a produt page (for administrator users)
+- Connect a location to a user profile for quick checkout
+- Connect a location to an order for shipping purposes
+- Incorporate a payment system when placing orders
+- Add carrier and tracking number information to an order
+- Incorporate an email system to notify admins and users when an order is placed

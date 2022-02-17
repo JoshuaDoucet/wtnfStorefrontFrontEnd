@@ -1,6 +1,23 @@
-### Wandering Threads and Nesting Feathers (WTNF) Storefront Website
+## Wandering Threads and Nesting Feathers (WTNF) Storefront Website
 - The WTNF Storefront is an online web application that allows users to log in to their user account, browse products for sale, add them to a shopping cart, and place orders.
 
+### Installing and running the application
+- Prerequisite
+  - Node.js
+  - npm 
+  - Angular CLI
+  - Web browser
+  - Internet connection to fetch data from external storefront API
+- Clone this repo
+  - ``` git clone https://github.com/JoshuaDoucet/wtnfStorefront.git main ```
+- Install the external modules
+  - ``` npm install```
+- Run the web server
+  - ``` ng serve```
+- Navigate a web browser to 
+  - ``` localhost:4200```
+
+### Website Routes
 - "/products" The products page displays all products available for sale
 - "/products/:id" A product details page displays additional information about a signle product.
 - "/signin" The signin page allows users to log in to the website so they can add items to the cart.

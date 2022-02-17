@@ -1,3 +1,6 @@
+// Cart products component
+// A parent component that holds a list of all products in the cart for a given user
+
 import { Component, OnInit } from '@angular/core';
 import { CartItem, CartItemSimple} from 'src/app/models/cartItem';
 import { Product } from 'src/app/models/product';
@@ -65,7 +68,6 @@ export class CartProductsComponent implements OnInit {
       if(this.cartItems[i] && this.cartItems[i].price && this.cartItems[i].product_quantity){
         this.totalPrice += this.cartItems[i].price * this.cartItems[i].product_quantity;
       }
-    console.log("Total price " + this.totalPrice)
     }
   }
 }

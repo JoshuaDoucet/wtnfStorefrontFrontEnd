@@ -1,6 +1,9 @@
+// Product cart item Component
+// Displays information about a product in an order with the ability
+// to remove the product or change the product quantity in the cart
+
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { CartItem, CartItemSimple } from 'src/app/models/cartItem';
-import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart/cart.service';
 
 @Component({
@@ -49,8 +52,6 @@ export class ProductCartItemComponent implements OnInit {
           alert(`Product quantity not updated in cart. ` + err)
         },
         next: (cartItem) => { 
-          console.log("Update emit ")
-          console.log(cartItem);
           this.updateProductEmit.emit(cartItem);
         }
       });
@@ -66,8 +67,6 @@ export class ProductCartItemComponent implements OnInit {
           alert(`Product not removed from cart. ` + err)
         },
         next: (cartItem) => { 
-          console.log("Remove emit ")
-          console.log(cartItem);
           this.removeProductEmit.emit(cartItem);
         }
       });
