@@ -1,36 +1,38 @@
-<form (ngSubmit)="placeOrder()">
+<form #form="ngForm" (ngSubmit)="placeOrder()">
     <h2>Checkout</h2>
     <h4>Your Information</h4>
     <label for="firstName">First Name: </label>
-    <input type="text" name="firstName" placeholder="Jane" [(ngModel)]="firstName"><br>
+    <input type="text" name="firstName" required minlrngth="2" maxlength="40" placeholder="Jane" [(ngModel)]="firstName"><br>
 
     <label for="lastName">Last Name: </label>
-    <input type="text" name="lastName" placeholder="Doe" [(ngModel)]="lastName"><br>
+    <input type="text" name="lastName" required minlrngth="2"  maxlength="40" placeholder="Doe" [(ngModel)]="lastName"><br>
 
     <label for="phone">Phone #: </label>
-    <input type="text" name="phone" placeholder="8885550000" [(ngModel)]="phone"><br>
+    <input type="text" name="phone" placeholder="888-555-0000" required minlength="10" maxlength="25" [(ngModel)]="phone"><br>
 
     <label for="email">Email: </label>
-    <input type="email" name="email" placeholder="your@email.com" [(ngModel)]="email"><br>
+    <input type="email" name="email" placeholder="your@email.com" required minlength="6" [(ngModel)]="email"><br>
+
+    <h4>Shipping Address</h4>
 
     <label for="addr1">Street Address: </label>
-    <input type="text" name="addr1" placeholder="123 Sample St." [(ngModel)]="addr1"><br>
+    <input type="text" name="addr1" placeholder="123 Sample St." required minlength="5" maxlength="80" [(ngModel)]="addr1"><br>
 
     <label for="addr2">Address Line 2: </label>
-    <input type="text" name="addr2" placeholder="Apt 203" [(ngModel)]="addr2"><br>
+    <input type="text" name="addr2" placeholder="Apt 203" maxlength="80" [(ngModel)]="addr2"><br>
 
     <label for="city">City: </label>
-    <input type="text" name="city" placeholder="Roundtown" [(ngModel)]="city"><br>
+    <input type="text" name="city" placeholder="Roundtown" required minlength="2" maxlength="50" [(ngModel)]="city"><br>
 
     <label for="lastName">State: </label>
-    <input type="text" name="state" placeholder="Idaho" [(ngModel)]="state"><br>
+    <input type="text" name="state" placeholder="Idaho" required minlength="2" maxlength="20" [(ngModel)]="state"><br>
 
     <label for="zip">ZIP Code: </label>
-    <input type="number" name="zip" placeholder="65433" [(ngModel)]="zip"><br>
+    <input type="number" name="zip" required minlength="1" maxlength="15" placeholder="65433" [(ngModel)]="zip"><br>
 
     <label for="country">Country: </label>
-    <input type="text" name="country" placeholder="United States" [(ngModel)]="country"><br><br>
+    <input type="text" name="country" required minlength="2" maxlength="60" placeholder="United States" [(ngModel)]="country"><br><br>
 
 
-    <button type="submit">Place Order</button>
+    <button type="submit" [disabled]="form.invalid">Place Order</button>
 </form>
