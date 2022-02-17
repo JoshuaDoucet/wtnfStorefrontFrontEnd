@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { Product } from '../../models/product'
 import { ConfigurationService } from '../configuration/configuration.service';
 
+
 @Injectable({
   providedIn: 'root'
 })

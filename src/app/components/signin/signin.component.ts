@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticateService } from 'src/app/services/authenticate/authenticate.service';
+import { OrdersService } from 'src/app/services/orders/orders.service';
 import { UserProfileService } from 'src/app/services/user-profile/user-profile.service';
 
 @Component({
@@ -17,7 +18,8 @@ export class SigninComponent implements OnInit {
 
   constructor(private authenticateService: AuthenticateService,
     private router: Router,
-    private userProfileService: UserProfileService) { }
+    private userProfileService: UserProfileService,
+    private orderServoce: OrdersService) { }
 
   ngOnInit(): void {
     this.errMsg = "";
@@ -34,6 +36,7 @@ export class SigninComponent implements OnInit {
           this.errMsg = "Invalid sign-in credentials."
           localStorage.removeItem('userId');
           localStorage.removeItem('userFirstName');
+          localStorage.removeItem("activeOrdId");
         }else{
           //  if sign in successful
           // add user id to local storage
@@ -44,6 +47,8 @@ export class SigninComponent implements OnInit {
             // return user to products page
             this.router.navigate(['/products']);
           });
+          // retrieve the active order id for the user and add it to local storage
+          this.orderServoce.getActiveOrderId();
         }
       });
   }

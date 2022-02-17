@@ -12,6 +12,7 @@ export class CartProductsComponent implements OnInit {
   //products in the cart for the logged in user
   cartItems: CartItem[] = [];
   totalPrice: number = 0;
+  orderNumber: string = "";
 
   constructor(private cartService: CartService) { }
 
@@ -23,6 +24,10 @@ export class CartProductsComponent implements OnInit {
     this.cartService.getCart().subscribe(cartItems => {
       this.cartItems = cartItems;
       this.updateCartPrice();
+      const orderNumber = localStorage.getItem("activeOrdId"); 
+      if(orderNumber){
+        this.orderNumber = orderNumber;
+      }
     })
   }
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 import { User } from 'src/app/models/user';
+import { OrdersService } from 'src/app/services/orders/orders.service';
 import { UserProfileService } from 'src/app/services/user-profile/user-profile.service';
 
 @Component({
@@ -22,6 +23,7 @@ export class CartCheckoutComponent implements OnInit {
   user: User = new User();
 
   constructor(private userProfileService: UserProfileService,
+              private orderService: OrdersService,
               private router: Router) { }
 
   ngOnInit(): void {
@@ -46,9 +48,37 @@ export class CartCheckoutComponent implements OnInit {
   }
 
   placeOrder(): void {
-    let route = `/cart/confirm`;
-    this.router.navigate([route], {
-      state: { /* Pass info to confirm page here */}
-    });
+    const userId = localStorage.getItem('userId')
+    if(userId){
+      // update order status from active to placed
+      this.orderService.updateOrderStatus("placed").subscribe({
+        error: (err) => {
+          alert("Order status not updated. Sign out and then sign in.")
+        },
+        next: (order) => {
+          // order is no longer active, create an active order
+          console.log(order)
+          this.orderService.createOrder(userId).subscribe({
+            error: (err) => {},
+            next: (order) => {
+              if(order.id){
+                localStorage.setItem("activeOrdId", order.id)
+                // redirect to order confirmed page
+                let route = `/cart/confirm`;
+                this.router.navigate([route], {
+                  state: { order: order}
+                });
+              }else{
+                throw new Error("Order id is undefined");
+              }
+            }
+          })
+        }
+      });  
+    }else{
+      alert("Please Sign-in")
+      let route = `/authenticate`;
+      this.router.navigate([route]);
+    }
   }
 }

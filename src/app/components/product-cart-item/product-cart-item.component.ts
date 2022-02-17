@@ -26,7 +26,7 @@ export class ProductCartItemComponent implements OnInit {
     if(event.target.value < 1){
       alert("Quantity must be at least 1");
       this.quantity = this.cartItem.product_quantity;
-    } else if(event.target.value !== Math.floor(event.target.value)){
+    } else if(event.target.value != Math.floor(event.target.value)){
       alert("Quantity must be a whole number.")
     }
     else if(event.target.value <= this.cartItem.boh){

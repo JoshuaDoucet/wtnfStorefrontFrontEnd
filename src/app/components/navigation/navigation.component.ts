@@ -21,6 +21,7 @@ export class NavigationComponent implements OnInit {
   // sign user out. remove user info from local storage
   signOut(): void {
     localStorage.removeItem('token');
+    localStorage.removeItem('activeOrdId')
     localStorage.removeItem('userId')
     this.userId = null;
     localStorage.removeItem('userFirstName');
