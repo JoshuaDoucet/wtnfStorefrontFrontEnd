@@ -1,4 +1,5 @@
 Future application improvments
+- Update a product's boh (balance on hand) when an order is placed
 - Sign Up / Create user component
 - Add a produt page (for administrator users)
 - Connect a location to a user profile for quick checkout
