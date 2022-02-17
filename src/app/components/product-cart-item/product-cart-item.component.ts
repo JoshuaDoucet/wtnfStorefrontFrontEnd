@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { CartItem } from 'src/app/models/cartItem';
+import { CartItem, CartItemSimple } from 'src/app/models/cartItem';
 import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart/cart.service';
 
@@ -10,8 +10,8 @@ import { CartService } from 'src/app/services/cart/cart.service';
 })
 export class ProductCartItemComponent implements OnInit {
   @Input() cartItem: CartItem = new CartItem();
-  @Output() removeProductEmit: EventEmitter<CartItem> = new EventEmitter();
-  @Output() updateProductEmit: EventEmitter<CartItem> = new EventEmitter();
+  @Output() removeProductEmit: EventEmitter<CartItemSimple> = new EventEmitter();
+  @Output() updateProductEmit: EventEmitter<CartItemSimple> = new EventEmitter();
   quantity: number = 0;
   subTotal: number = 0;
 
@@ -49,6 +49,8 @@ export class ProductCartItemComponent implements OnInit {
           alert(`Product quantity not updated in cart. ` + err)
         },
         next: (cartItem) => { 
+          console.log("Update emit ")
+          console.log(cartItem);
           this.updateProductEmit.emit(cartItem);
         }
       });
@@ -64,6 +66,7 @@ export class ProductCartItemComponent implements OnInit {
           alert(`Product not removed from cart. ` + err)
         },
         next: (cartItem) => { 
+          console.log("Remove emit ")
           console.log(cartItem);
           this.removeProductEmit.emit(cartItem);
         }

@@ -44,11 +44,11 @@ export class SigninComponent implements OnInit {
           // add user to userFirstName in local storage
           this.userProfileService.getUser(userId).subscribe(user => {
             localStorage.setItem('userFirstName', user.first_name);
+            // retrieve the active order id for the user and add it to local storage
+            this.orderServoce.getActiveOrderId();
             // return user to products page
             this.router.navigate(['/products']);
           });
-          // retrieve the active order id for the user and add it to local storage
-          this.orderServoce.getActiveOrderId();
         }
       });
   }

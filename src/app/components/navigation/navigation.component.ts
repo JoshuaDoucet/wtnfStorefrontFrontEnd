@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AuthenticateService } from 'src/app/services/authenticate/authenticate.service';
 
 @Component({
   selector: 'app-navigation',
@@ -10,7 +11,7 @@ export class NavigationComponent implements OnInit {
   userFirstName : string | null = null;
   @Input() navigateOn: boolean = true;
 
-  constructor() { }
+  constructor(private authenticateService: AuthenticateService) { }
 
   ngOnInit(): void {
     // get user info from local storage
@@ -20,11 +21,8 @@ export class NavigationComponent implements OnInit {
 
   // sign user out. remove user info from local storage
   signOut(): void {
-    localStorage.removeItem('token');
-    localStorage.removeItem('activeOrdId')
-    localStorage.removeItem('userId')
     this.userId = null;
-    localStorage.removeItem('userFirstName');
     this.userFirstName = null;
+    this.authenticateService.signOut();
   }
 }

@@ -7,11 +7,9 @@
                 <br><a *ngIf="userId == null" routerLink="/signin"><button>Sign-In</button></a>
                 <a *ngIf="userId == null" routerLink="/signup"><br><button>Sign-Up</button></a>
                 <button *ngIf="userId != null" (click)="signOut()" >Sign-Out</button>
-                <br><a *ngIf="userId != null" routerLink="/profile"><button>Account Profile</button></a>
+                <br><a *ngIf="userId != null" routerLink="/profile"><button>{{userFirstName}}'s Account</button></a>
                 <br><a *ngIf="userId != null" routerLink="/cart"><button>Cart</button></a>
             </span>
-            <br><br>
-            <p *ngIf="userFirstName != null">Hi {{userFirstName}}!</p>
         </div>
     </span>
 </div>

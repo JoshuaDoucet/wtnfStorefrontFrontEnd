@@ -20,5 +20,18 @@ export class CartItem {
         this.ord_id = -1;
         this.status = "active";
     }
+}
 
+export class CartItemSimple {
+    id: number; // order_products ID
+    product_id: number; // product ID
+    product_quantity: number;
+    ord_id: number;
+
+    constructor(){
+        this.id = -1;
+        this.product_id = -1;
+        this.product_quantity = 0;
+        this.ord_id = -1;
+    }
 }

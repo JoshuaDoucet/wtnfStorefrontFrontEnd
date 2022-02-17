@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ConfigurationService } from '../configuration/configuration.service';
 import { Observable } from 'rxjs';
-import { CartItem } from 'src/app/models/cartItem';
+import { CartItem, CartItemSimple } from 'src/app/models/cartItem';
 import { HttpClient } from '@angular/common/http';
 import { UserProfileService } from '../user-profile/user-profile.service';
 import { OrdersService } from '../orders/orders.service';
@@ -40,10 +40,12 @@ export class CartService {
     }
   }
 
-  removeProductFromCart(productId: string):Observable<CartItem>{
+  removeProductFromCart(productId: string):Observable<CartItemSimple>{
     const orderId = localStorage.getItem('activeOrdId')
+    console.log("Remove order id " + orderId)
+    console.log("Prod id " + productId)
     if(orderId){
-        return this.http.delete<CartItem>(
+        return this.http.delete<CartItemSimple>(
           this.config.getApiHost() + `/orders/${orderId}/products/${productId}`
       )
     }else{
@@ -52,10 +54,10 @@ export class CartService {
     }
   }
 
-  updateProductQuantityInCart(productId: string, quantity: number):Observable<CartItem>{
+  updateProductQuantityInCart(productId: string, quantity: number):Observable<CartItemSimple>{
     const orderId = localStorage.getItem('activeOrdId')
     if(orderId){
-        return this.http.put<CartItem>(
+        return this.http.put<CartItemSimple>(
           this.config.getApiHost() + `/orders/${orderId}/products/${productId}`,
           { 
             product_quantity: quantity

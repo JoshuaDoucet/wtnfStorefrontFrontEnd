@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CartItem } from 'src/app/models/cartItem';
+import { CartItem, CartItemSimple} from 'src/app/models/cartItem';
 import { Product } from 'src/app/models/product';
 import { CartService } from 'src/app/services/cart/cart.service';
 
@@ -31,15 +31,25 @@ export class CartProductsComponent implements OnInit {
     })
   }
 
-  removeProduct(cartItem: CartItem): void {
-    this.cartItems = this.cartItems.filter(item => 
-      item.product_id + "" !== cartItem.product_id + ""
+  removeProduct(cartItem: CartItemSimple): void {
+    console.log(cartItem)
+    this.cartItems = this.cartItems.filter(item => {
+      console.log("item")
+      console.log(item)
+      console.log("item id")
+      console.log(item.product_id)
+      if(item.product_id && cartItem.product_id){
+        return (item.product_id + "" !== cartItem.product_id + "")
+      }else{
+        return false
+      }
+    }
     );
     this.updateCartPrice();
     alert(`Product with ID# ${cartItem.product_id} removed from cart.`);
   }
 
-  updateProdQuantity(cartItem: CartItem): void {
+  updateProdQuantity(cartItem: CartItemSimple): void {
     for(let i = 0; i < this.cartItems.length; i++){
       if(this.cartItems[i].product_id + "" == cartItem.product_id + ""){
         this.cartItems[i].product_quantity = cartItem.product_quantity;
@@ -55,6 +65,7 @@ export class CartProductsComponent implements OnInit {
       if(this.cartItems[i] && this.cartItems[i].price && this.cartItems[i].product_quantity){
         this.totalPrice += this.cartItems[i].price * this.cartItems[i].product_quantity;
       }
+    console.log("Total price " + this.totalPrice)
     }
   }
 }

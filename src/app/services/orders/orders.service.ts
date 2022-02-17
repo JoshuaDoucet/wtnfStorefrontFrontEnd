@@ -65,27 +65,32 @@ export class OrdersService {
         },
         next: (orders) => {
           // orders for user retrieved, find the users active order
+          let activeOrderFound = false;
           for(let i = 0; i < orders.length; i++){
             const orderId = orders[i].id
             if(orders[i].status == "active" && orderId){
               localStorage.setItem("activeOrdId", orderId)
-            }else{
-              // user has no active orders. Create one, update active order ID
-              this.createOrder(userId).subscribe({
-                error: (err) => {},
-                next: (order) => {
-                  const orderId = order.id;
-                  if(orderId){
-                    localStorage.setItem("activeOrdId", orderId)
-                  }else{
-                    throw new Error("Order ID is undefined.")
-                  }
-                }
-              })
+              activeOrderFound = true;
             }
+          }
+          if(!activeOrderFound){
+             // user has no active orders. Create one, update active order ID
+             this.createOrder(userId).subscribe({
+              error: (err) => {},
+              next: (order) => {
+                const orderId = order.id;
+                if(orderId){
+                  localStorage.setItem("activeOrdId", orderId)
+                }else{
+                  throw new Error("Order ID is undefined.")
+                }
+              }
+            })
           }
         }
       });
+    }else{
+      throw new Error("User ID is null. Sign in to get order info")
     }
   }
 }

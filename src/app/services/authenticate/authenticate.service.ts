@@ -20,5 +20,12 @@ export class AuthenticateService {
         }
     )
   }
+
+  signOut(){
+    localStorage.removeItem('token');
+    localStorage.removeItem('activeOrdId')
+    localStorage.removeItem('userId')
+    localStorage.removeItem('userFirstName');
+  }
   
 }
