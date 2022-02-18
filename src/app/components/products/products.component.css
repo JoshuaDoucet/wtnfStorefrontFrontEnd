@@ -4,6 +4,8 @@
     text-align: center;
     background-color: #FDFAF6;
     width: fit-content;
+    height: fit-content;
+    padding-bottom: 20px;
 }
 
 .page-title {

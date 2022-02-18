@@ -2,3 +2,7 @@ form {
     padding: 4mm;
     border: 2mm;
 }
+
+.error {
+    color: red;
+}

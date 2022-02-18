@@ -7,9 +7,10 @@
         <br>
     </div>
     <div *ngIf="product.boh && product.price">
-        <span>${{product.price}}</span><br><br>
+        <span><b>${{product.price}}</b></span><br>
         <form (ngSubmit)="addToCart()">
         <div class="product-sub-item">
+            <span>Available Qty: {{product.boh}}</span><br>
             <label for="quantity">Qty: </label>
             <input [(ngModel)]="quantity" type="number" id="quantity" name="quantity" step="1" min="1" pattern="\d+" max="{{ product.boh }}">
         </div>

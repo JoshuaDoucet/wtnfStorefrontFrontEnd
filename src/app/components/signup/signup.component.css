@@ -1,8 +1,12 @@
-.profile-container {
+.error{
+    color: red;
+}
+
+.sign-up-container {
     background-color: #FDFAF6;
     width: 65%;
     padding-top: 20px;
     padding-bottom: 40px;
     margin: auto;
-    padding: 30px;
+    text-align: center;
   }

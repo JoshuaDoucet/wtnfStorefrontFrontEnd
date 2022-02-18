@@ -2,6 +2,7 @@
     Item UID# {{cartItem.product_id}}<br>
     <a routerLink="/products/{{cartItem.product_id}}">{{cartItem.name}}</a><br>
     Price: ${{cartItem.price}}<br>
+    Available Qty: {{cartItem.boh}}
     <form>
         <label for="quantity">Qty: </label>
         <input [(ngModel)]="quantity" (ngModelChange)="onChangeEvent($event)" name="quantity" type="number" id="quantity" min="1"  step="1" pattern="\d+" max="{{cartItem.boh}}" value="{{quantity}}"><br>

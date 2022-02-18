@@ -39,6 +39,8 @@ export class CartCheckoutComponent implements OnInit {
       this.userProfileService.getUser(userId).subscribe({
         error: err => {
           alert("Cannot verify user credentials. Sign-In")
+          let route = `/signin`;
+          this.router.navigate([route]);
         },
         next: user => {
           this.firstName = user.first_name;

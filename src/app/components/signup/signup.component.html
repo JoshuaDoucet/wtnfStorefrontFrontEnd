@@ -1,10 +1,12 @@
-<form #form="ngForm" (ngSubmit)="placeOrder()">
-    <h2>Checkout</h2>
-    <h4>Your Information</h4>
+<app-navigation [navigateOn]="navigateOn"></app-navigation>
+
+<form #form="ngForm" (ngSubmit)="signUp()" class="sign-up-container">
+
     <label for="firstName">First Name: </label>
     <input type="text" 
             name="firstName" 
-            required minlrngth="2" 
+            required 
+            minlength="2" 
             maxlength="50" 
             placeholder="Jane" 
             [(ngModel)]="firstName"
@@ -13,7 +15,8 @@
     <label for="lastName">Last Name: </label>
     <input type="text" 
             name="lastName" 
-            required minlrngth="2"  
+            required 
+            minlength="2"  
             maxlength="50" 
             placeholder="Doe" 
             [(ngModel)]="lastName"
@@ -25,7 +28,7 @@
             placeholder="8885550000" 
             required 
             min="1000000" 
-            maxlength="999999999999999" 
+            max="999999999999999" 
             [(ngModel)]="phone"
             #checkPhone="ngModel"><br>
 
@@ -39,7 +42,23 @@
             [(ngModel)]="email"
             #checkEmail="ngModel"><br>
 
-    <h4>Shipping Address</h4>
+    <label for="password">Password (12 characters): </label>
+    <input type="password" 
+            name="password" 
+            placeholder="password" 
+            required 
+            minlength="12" 
+            [(ngModel)]="password"
+            #checkPass="ngModel"><br>
+
+    <label for="password-confirm">Confirm Password: </label>
+    <input type="password" 
+            name="password-confirm" 
+            placeholder="confirm password" 
+            required 
+            minlength="12" 
+            [(ngModel)]="passwordConfirm"
+            #checkPassConfirm="ngModel"><br>
 
     <label for="addr1">Street Address: </label>
     <input type="text" 
@@ -98,9 +117,12 @@
             [(ngModel)]="country"
             #checkCountry="ngModel"><br><br>
 
-    <button type="submit" [disabled]="form.invalid">Place Order</button>
+    <button type="submit" [disabled]="form.invalid">Sign Up!</button>
+    
+     <!--Error messages-->
 
-    <!--Error messages-->
+    <p class="error"> {{errMsg}} </p>
+
     <div class="error" *ngIf="checkFirst.invalid && checkFirst.dirty">
         <div *ngIf="checkFirst.hasError('required')">
             First name is required
@@ -132,7 +154,7 @@
         <div *ngIf="checkPhone.hasError('min')">
             Phone Number is invalid <br>
         </div>
-        <div *ngIf="checkEmail.hasError('maxlength')">
+        <div *ngIf="checkEmail.hasError('max')">
             Phone Number is too long <br>
         </div>
     </div>
@@ -146,6 +168,25 @@
         </div>
         <div *ngIf="checkEmail.hasError('maxlength')">
             Email must be less than 400 characters <br>
+        </div>
+    </div>
+
+
+    <div class="error" *ngIf="checkPass.invalid && checkPass.dirty">
+        <div *ngIf="checkPass.hasError('required')">
+            Password is required
+        </div>
+        <div *ngIf="checkPass.hasError('minlength')">
+            Password must be at least 12 characters <br>
+        </div>
+    </div>
+
+    <div class="error" *ngIf="checkPassConfirm.invalid && checkPassConfirm.dirty">
+        <div *ngIf="checkPassConfirm.hasError('required')">
+            Password Confirmation is required
+        </div>
+        <div *ngIf="checkPassConfirm.hasError('minlength')">
+            Password Confirmation must be at least 12 characters <br>
         </div>
     </div>
 
@@ -209,3 +250,4 @@
         </div>
     </div>
 </form>
+

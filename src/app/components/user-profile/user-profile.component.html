@@ -1,12 +1,23 @@
-<h2>Account Profile</h2>
-<span *ngIf="userId != null">
-    <p>User ID: {{userId}}</p>
-    <p *ngIf="user.first_name != null">First name: {{user.first_name}}</p>
-    <p *ngIf="user.last_name != null">Last name: {{user.last_name}}</p>
-    <p *ngIf="user.phone != null">Phone: {{user.phone}}</p>
-    <p *ngIf="user.email != null">Email: {{user.email}}</p>
-</span>
-<p *ngIf="userId == null"><a routerLink="/signin">Sign-in to view profile</a>
+<app-navigation></app-navigation>
+<div class="profile-container">
 
-
-
+    <h2>Account Profile</h2>
+    <span *ngIf="userId != null">
+        <p>User ID: {{userId}}</p>
+        <p *ngIf="user.first_name != null">First name: {{user.first_name}}</p>
+        <p *ngIf="user.last_name != null">Last name: {{user.last_name}}</p>
+        <p *ngIf="user.phone != null">Phone: {{user.phone}}</p>
+        <p *ngIf="user.email != null">Email: {{user.email}}</p>
+    </span>
+    <span *ngIf="location.id != null">
+        <p>Location ID: {{location.id}}</p>
+        <p *ngIf="location.name != null">Location name: {{location.name}}</p>
+        <p *ngIf="location.street_addr_1 != null">Street Address: {{location.street_addr_1}}</p>
+        <p *ngIf="location.street_addr_2 != null">Address Line 2: {{location.street_addr_2}}</p>
+        <p *ngIf="location.city != null">City: {{location.city}}</p>
+        <p *ngIf="location.state != null">State: {{location.state}}</p>
+        <p *ngIf="location.zip != null">Zip Code: {{location.zip}}</p>
+        <p *ngIf="location.country != null">City: {{location.country}}</p>
+    </span>
+    <p *ngIf="userId == null"><a routerLink="/signin">Sign-in to view profile</a>    
+</div>

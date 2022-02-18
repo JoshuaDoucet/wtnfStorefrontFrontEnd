@@ -54,7 +54,7 @@ export class CartProductsComponent implements OnInit {
       }
     }
     this.updateCartPrice();
-    alert(`Quantity for product with ID# ${cartItem.product_id} updated in cart.`);
+    alert(`Cart qty for product ID# ${cartItem.product_id} updated .`);
   }
 
   updateCartPrice(){

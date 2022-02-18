@@ -43,6 +43,36 @@ export class UserProfileService {
     return this.http.get<User>(this.config.getApiHost() + `/users/${userId}`);
   }
 
+  // update the logged in user
+  updateUser(user: User): Observable<User>{
+    const userId = localStorage.getItem('userId')
+    return this.http.put<User>(
+      this.config.getApiHost() + `/users/${userId}`,
+      { 
+        first_name: user.first_name,
+        last_name: user.last_name,
+        phone: user.phone,
+        email: user.email,
+        location_id: user.location_id
+      }
+    )
+  }
+
+
+  createUser(user: User): Observable<string>{
+    return this.http.post<string>(
+      this.config.getApiHost() + `/users`,
+      { 
+        first_name: user.first_name,
+        last_name: user.last_name,
+        phone: user.phone,
+        email: user.email,
+        password: user.password,
+        location_id: user.location_id
+      }
+    )
+  }
+
   getUserOrders(userId: string): Observable<Order[]>{
     return this.http.get<Order[]>(this.config.getApiHost() + `/users/${userId}/orders`);
   }
