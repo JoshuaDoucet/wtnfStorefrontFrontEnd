@@ -4,6 +4,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'
 import { User } from 'src/app/models/user';
+import { LocationService } from 'src/app/services/location/location.service';
 import { OrdersService } from 'src/app/services/orders/orders.service';
 import { UserProfileService } from 'src/app/services/user-profile/user-profile.service';
 
@@ -16,17 +17,18 @@ export class CartCheckoutComponent implements OnInit {
   firstName: string = '';
   lastName: string = '';
   phone: number | undefined;
-  email: string = '';
-  addr1: string = '';
-  addr2: string = '';
-  city: string = '';
-  state: string = '';
+  email: string | undefined = '';
+  addr1: string | undefined = '';
+  addr2: string | undefined = '';
+  city: string | undefined = '';
+  state: string | undefined = '';
   zip: number | undefined;
-  country: string = '';
+  country: string | undefined = '';
   user: User = new User();
 
   constructor(private userProfileService: UserProfileService,
               private orderService: OrdersService,
+              private locationService: LocationService,
               private router: Router) { }
 
   ngOnInit(): void {
@@ -47,6 +49,25 @@ export class CartCheckoutComponent implements OnInit {
           this.lastName = user.last_name;
           this.phone = user.phone;
           this.email = user.email;
+          // get location details
+          const locationId = user.location_id;
+          console.log(locationId)
+          if(locationId){
+            this.locationService.getLocation(locationId).subscribe({
+              error: (err) => {console.log("Error retrieving user location")},
+              next: (location) => {
+                console.log(location);
+                this.addr1 = location.street_addr_1;
+                this.addr2 = location.street_addr_2;
+                this.city = location.city;
+                this.state = location.state;
+                this.zip = location.zip;
+                this.country = location.country;
+              }
+            });
+          }else{
+            console.log("Cannot prefill location details. Location ID undefined.")
+          }
         }
       })
       }

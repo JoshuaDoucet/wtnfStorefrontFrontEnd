@@ -4,7 +4,8 @@
     <label for="firstName">First Name: </label>
     <input type="text" 
             name="firstName" 
-            required minlrngth="2" 
+            required 
+            minlength="2" 
             maxlength="50" 
             placeholder="Jane" 
             [(ngModel)]="firstName"
@@ -13,7 +14,8 @@
     <label for="lastName">Last Name: </label>
     <input type="text" 
             name="lastName" 
-            required minlrngth="2"  
+            required 
+            minlength="2"  
             maxlength="50" 
             placeholder="Doe" 
             [(ngModel)]="lastName"
@@ -54,7 +56,7 @@
     <label for="addr2">Address Line 2: </label>
     <input type="text" 
             name="addr2" 
-            placeholder="Apt 203" 
+            placeholder="(optional)" 
             maxlength="80" 
             [(ngModel)]="addr2"><br>
 
