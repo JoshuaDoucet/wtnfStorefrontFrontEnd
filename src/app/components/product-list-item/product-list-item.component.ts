@@ -40,7 +40,7 @@ export class ProductListItemComponent implements OnInit {
   }
 
   addToCart(){
-    if(this.product.id && localStorage.getItem('userId')){
+    if(this.product.id && localStorage.getItem('userId') != null){
       if(this.quantity < 1){
         alert("Quantity must be greater than 0")
       } else if(this.quantity !== Math.floor(this.quantity)){

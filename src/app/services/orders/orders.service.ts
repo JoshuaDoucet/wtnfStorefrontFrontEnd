@@ -13,7 +13,10 @@ export class OrdersService {
   constructor(private http: HttpClient, 
     private config: ConfigurationService,
     private userProfileService: UserProfileService) { 
-      this.getActiveOrderId();
+      const userId = localStorage.getItem('userId');
+      if(userId != null){
+        this.getActiveOrderId();
+      }
     }
 
   // get all orders from external backend API

@@ -13,10 +13,12 @@ export class CartService {
 
   constructor(private http: HttpClient, 
     private config: ConfigurationService,
-    private userProfileService: UserProfileService,
     private orderService: OrdersService) {
       // get active order ID
-      this.orderService.getActiveOrderId();
+      const userId = localStorage.getItem('userId')
+      if(userId != null){
+        this.orderService.getActiveOrderId();
+      }
     }
 
   
