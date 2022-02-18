@@ -25,15 +25,15 @@ export class ProductCartItemComponent implements OnInit {
     this.subTotal = this.cartItem.product_quantity * this.cartItem.price;
   }
 
-  onChangeEvent(event: any){
-    if(event.target.value < 1){
+  onChangeEvent(quantity: number){
+    if(quantity < 1){
       alert("Quantity must be at least 1");
       this.quantity = this.cartItem.product_quantity;
-    } else if(event.target.value != Math.floor(event.target.value)){
+    } else if(quantity != Math.floor(quantity)){
       alert("Quantity must be a whole number.")
     }
-    else if(event.target.value <= this.cartItem.boh){
-      this.cartItem.product_quantity = event.target.value;
+    else if(quantity <= this.cartItem.boh){
+      this.cartItem.product_quantity = quantity;
       this.quantity = this.cartItem.product_quantity;
       this.subTotal = this.cartItem.product_quantity * this.cartItem.price;
       this.updateProdQuantity();

@@ -35,12 +35,7 @@ export class CartProductsComponent implements OnInit {
   }
 
   removeProduct(cartItem: CartItemSimple): void {
-    console.log(cartItem)
     this.cartItems = this.cartItems.filter(item => {
-      console.log("item")
-      console.log(item)
-      console.log("item id")
-      console.log(item.product_id)
       if(item.product_id && cartItem.product_id){
         return (item.product_id + "" !== cartItem.product_id + "")
       }else{
