@@ -1,3 +1,5 @@
+### THIS REPO IS NO LONGER MAINTAINED. SEE ITS NEW HOME https://github.com/JoshuaDoucet/wtnfStorefront
+
 ## Wandering Threads and Nesting Feathers (WTNF) Storefront Front-End UI
 - The WTNF Storefront is an online web application that allows users to log in to their user account, browse products for sale, add them to a shopping cart, and place orders.
 
